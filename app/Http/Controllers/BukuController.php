@@ -9,9 +9,13 @@ use App\Models\Peminjaman;
 use Illuminate\Support\Str;
 use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
+use App\Traits\GenerateSlug;
+
 
 class BukuController extends Controller
 {
+    use GenerateSlug;
+
     public function index()
     {
         return view('pages.buku', [
@@ -29,6 +33,7 @@ class BukuController extends Controller
     {
         $validated = $request->validated();
         $validated['image'] = $request->image ?: 'https://cdn3d.iconscout.com/3d/premium/thumb/book-5596349-4665465.png';
+        $validated['slug'] = $this->generateSlug($request->judul);
 
         $buku = Buku::create($validated);
         $stok = $validated['stok'];
@@ -64,6 +69,8 @@ class BukuController extends Controller
     {
         $validated = $request->validated();
         $validated['image'] = $request->image ?: 'https://cdn3d.iconscout.com/3d/premium/thumb/book-5596349-4665465.png';
+        $validated['slug'] = $this->generateSlug($request->judul);
+
 
         $buku->update($validated);
         $stok = DetailBuku::where('buku_id', $buku->id)->count();

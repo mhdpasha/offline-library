@@ -75,6 +75,7 @@
                                     <th>Peminjam</th>
                                     <th>Admin/Pustakawan</th>
                                     <th>Tanggal Peminjaman</th>
+                                    <th>Kode</th>
                                     <th>Status</th>
                                     <th width="100px">Action</th>
                                 </tr>
@@ -87,6 +88,7 @@
                                         <td>{{ $pinjam->user->nama }}</td>
                                         <td>{{ $pinjam->admin->nama }}</td>
                                         <td>{{ $pinjam->simple_created_at }}</td>
+                                        <td>{{ $pinjam->slug }}</td>
                                         <td class="text-center"><span class="p-2 badge badge-warning">Dipinjam</span></td>
                                         <td class="d-flex justify-content-center align-items-center">
                                             <a href="{{ route('peminjaman.show', $pinjam) }}"

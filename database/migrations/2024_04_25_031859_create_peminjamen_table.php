@@ -18,6 +18,7 @@ public function up(): void
         $table->date('tanggal_pengembalian')->nullable();
         $table->boolean('history')->nullable();
         $table->boolean('deleted')->nullable();
+        $table->string('slug')->nullable();
         $table->timestamps();
     });
 }

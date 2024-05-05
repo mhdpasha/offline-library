@@ -14,6 +14,11 @@ class Peminjaman extends Model
 
     protected $guarded = ['id'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function getSimpleCreatedAtAttribute()
     {
         return $this->created_at->translatedFormat('j / F / Y');

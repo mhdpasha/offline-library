@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->text('image')->nullable()->default('https://cdn3d.iconscout.com/3d/premium/thumb/book-5596349-4665465.png');
             $table->integer('stok')->nullable()->default(5);
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

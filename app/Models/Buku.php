@@ -14,6 +14,11 @@ class Buku extends Model
 
     protected $guarded = ['id'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function getCreatedAtAttribute($attribute)
     {
         return Carbon::parse($attribute)->translatedFormat('j / F / Y');

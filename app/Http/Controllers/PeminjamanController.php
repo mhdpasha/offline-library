@@ -8,10 +8,14 @@ use App\Models\DetailBuku;
 use App\Models\Peminjaman;
 use App\Http\Requests\StorePeminjamanRequest;
 use App\Http\Requests\UpdatePeminjamanRequest;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use App\Traits\GenerateSlug;
 
 class PeminjamanController extends Controller
 {
+    use GenerateSlug;
+
     public function index()
     {
         return view('pages.peminjaman', [
@@ -40,6 +44,7 @@ class PeminjamanController extends Controller
         $validated['admin_id'] = auth()->user()->id;
         $validated['detail_buku_id'] = $request->buku_id;
         $validated['tanggal_peminjaman'] = Carbon::now();
+        $validated['slug'] = $this->generateSlug();
 
         Peminjaman::create($validated);
 
